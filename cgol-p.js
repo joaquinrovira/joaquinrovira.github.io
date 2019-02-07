@@ -1,4 +1,4 @@
-import Gui from './gui';
+import { Gui } from './gui';
 
 let canvas, width, height, ctx;
 let objects = [];
