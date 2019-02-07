@@ -236,7 +236,7 @@ function setup() {
             chaos:      { friction: 0.02, meanF: -0.1,   varF: 0.3, maxMaxR: 100,  minMaxR: 15, maxMinR: 15, minMinR: 6, types: 10,  separation: 50 }
         }
     };
-    let parameters = menus.Presets.smallFish;
+    parameters = menus.Presets.smallFish;
 
     setupParticles();
 
