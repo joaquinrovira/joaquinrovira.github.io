@@ -4,7 +4,7 @@ let keysDown = {};
 const smallFish = { friction: 0.04, meanF: -0.04, varF: 0.12, maxMaxR: 70, minMaxR: 20, maxMinR: 20, minMinR: 0, types: 10, separation: 65 };
 let parameters = smallFish;
 
-window.once('dom-ready', () => {
+window.on('dom-ready', () => {
     canvas = document.createElement('canvas');
     width = window.innerWidth;
     height = window.innerHeight;
@@ -298,7 +298,7 @@ class Gui {
     constructor(menus) {
         this.menus = [];
         this.toggle = new GuiToggle();
-        
+
         menuX = width - elementWidth - 12;
         gui = this;
 
