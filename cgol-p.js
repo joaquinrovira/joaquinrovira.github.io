@@ -192,9 +192,9 @@ function setupParticles() {// Used in setup() and onNewParameters event
     let separation = parameters.separation;
     let i = separation, j = separation, iMax = width - separation, jMax = height - separation;
     let maxParticles = 200;
-    let actualParticles = (width - 2 * separation) * (height - 2 * separation);
-    if(actualParticles > maxParticles) {
-        let sp = (Math.sqrt(actualParticles - maxParticles)/2) * separation;
+    let actualParticles = (width - 2 * separation) / separation * (height - 2 * separation) / separation;
+    if (actualParticles > maxParticles) {
+        let sp = (Math.sqrt(actualParticles - maxParticles) / 2) * separation;
         i += sp;
         j += sp;
         iMax -= sp;
@@ -218,22 +218,22 @@ function setup() {
     let menus = {
         Variables: {
             type: 'value',
-            friction:   { min: 0,  max: 1,   current: 0.04 },
-            meanF:      { min: -1, max: 1,   current: -0.04 },
-            varF:       { min: 0,  max: 1,   current: 0.12 },
-            maxMaxR:    { min: 0,  max: 100, current: 70 },
-            minMaxR:    { min: 0,  max: 100, current: 20 },
-            maxMinR:    { min: 0,  max: 100, current: 20 },
-            minMinR:    { min: 0,  max: 100, current: 6 },
-            types:      { min: 1,  max: 10,  current: 10 },
+            friction: { min: 0, max: 1, current: 0.04 },
+            meanF: { min: -1, max: 1, current: -0.04 },
+            varF: { min: 0, max: 1, current: 0.12 },
+            maxMaxR: { min: 0, max: 100, current: 70 },
+            minMaxR: { min: 0, max: 100, current: 20 },
+            maxMinR: { min: 0, max: 100, current: 20 },
+            minMinR: { min: 0, max: 100, current: 6 },
+            types: { min: 1, max: 10, current: 10 },
             separation: { min: 10, max: 100, current: 65 }
         },
         Presets: {
             type: 'preset',
-            smallFish:  { friction: 0.04, meanF: -0.04,  varF: 0.12, maxMaxR: 70,  minMaxR: 20, maxMinR: 20, minMinR: 6, types: 10, separation: 65 },
-            largeFish:  { friction: 0.2,  meanF: -0.1,   varF: 0.3,  maxMaxR: 100, minMaxR: 30, maxMinR: 30, minMinR: 6, types: 10, separation: 50 },
-            largeFish2: { friction: 0.2,  meanF: -0.1,   varF: 0.3,  maxMaxR: 100, minMaxR: 30, maxMinR: 30, minMinR: 6, types: 5,  separation: 50 },
-            chaos:      { friction: 0.02, meanF: -0.1,   varF: 0.3, maxMaxR: 100,  minMaxR: 15, maxMinR: 15, minMinR: 6, types: 10,  separation: 50 }
+            smallFish: { friction: 0.04, meanF: -0.04, varF: 0.12, maxMaxR: 70, minMaxR: 20, maxMinR: 20, minMinR: 6, types: 10, separation: 65 },
+            largeFish: { friction: 0.2, meanF: -0.1, varF: 0.3, maxMaxR: 100, minMaxR: 30, maxMinR: 30, minMinR: 6, types: 10, separation: 50 },
+            largeFish2: { friction: 0.2, meanF: -0.1, varF: 0.3, maxMaxR: 100, minMaxR: 30, maxMinR: 30, minMinR: 6, types: 5, separation: 50 },
+            chaos: { friction: 0.02, meanF: -0.1, varF: 0.3, maxMaxR: 100, minMaxR: 15, maxMinR: 15, minMinR: 6, types: 10, separation: 50 }
         }
     };
     parameters = menus.Presets.smallFish;
@@ -243,28 +243,28 @@ function setup() {
     let gui = new Gui({
         Variables: {
             type: 'value',
-            friction:   { min: 0,  max: 1,   current: 0.04 },
-            meanF:      { min: -1, max: 1,   current: -0.04 },
-            varF:       { min: 0,  max: 1,   current: 0.12 },
-            maxMaxR:    { min: 0,  max: 100, current: 70 },
-            minMaxR:    { min: 0,  max: 100, current: 20 },
-            maxMinR:    { min: 0,  max: 100, current: 20 },
-            minMinR:    { min: 0,  max: 100, current: 6 },
-            types:      { min: 1,  max: 10,  current: 10 },
+            friction: { min: 0, max: 1, current: 0.04 },
+            meanF: { min: -1, max: 1, current: -0.04 },
+            varF: { min: 0, max: 1, current: 0.12 },
+            maxMaxR: { min: 0, max: 100, current: 70 },
+            minMaxR: { min: 0, max: 100, current: 20 },
+            maxMinR: { min: 0, max: 100, current: 20 },
+            minMinR: { min: 0, max: 100, current: 6 },
+            types: { min: 1, max: 10, current: 10 },
             separation: { min: 10, max: 100, current: 65 }
         },
         Presets: {
             type: 'preset',
-            smallFish:  { friction: 0.04, meanF: -0.04,  varF: 0.12, maxMaxR: 70,  minMaxR: 20, maxMinR: 20, minMinR: 6, types: 10, separation: 65 },
-            largeFish:  { friction: 0.2,  meanF: -0.1,   varF: 0.3,  maxMaxR: 100, minMaxR: 30, maxMinR: 30, minMinR: 6, types: 10, separation: 50 },
-            largeFish2: { friction: 0.2,  meanF: -0.1,   varF: 0.3,  maxMaxR: 100, minMaxR: 30, maxMinR: 30, minMinR: 6, types: 5,  separation: 50 },
-            chaos:      { friction: 0.02, meanF: -0.1,   varF: 0.3, maxMaxR: 100,  minMaxR: 15, maxMinR: 15, minMinR: 6, types: 10,  separation: 50 }
+            smallFish: { friction: 0.04, meanF: -0.04, varF: 0.12, maxMaxR: 70, minMaxR: 20, maxMinR: 20, minMinR: 6, types: 10, separation: 65 },
+            largeFish: { friction: 0.2, meanF: -0.1, varF: 0.3, maxMaxR: 100, minMaxR: 30, maxMinR: 30, minMinR: 6, types: 10, separation: 50 },
+            largeFish2: { friction: 0.2, meanF: -0.1, varF: 0.3, maxMaxR: 100, minMaxR: 30, maxMinR: 30, minMinR: 6, types: 5, separation: 50 },
+            chaos: { friction: 0.02, meanF: -0.1, varF: 0.3, maxMaxR: 100, minMaxR: 15, maxMinR: 15, minMinR: 6, types: 10, separation: 50 }
         }
     }, ctx, width, height);
     addEventListener('onNewParameters', (e) => {
-        if(e.detail.name) {// Single parameter change
+        if (e.detail.name) {// Single parameter change
             parameters[e.detail.name] = e.detail.value;
-        } else if(e.detail.values) {// Full preset list
+        } else if (e.detail.values) {// Full preset list
             parameters = Object.assign({}, e.detail.values);
         } else throw 'Invalid new parameters.';
         setupParticles();
@@ -395,9 +395,9 @@ class Gui {
         let x = evt.clientX,
             y = evt.clientY,
             dy = 0;
-        
-        if(gui.toggle.state)
-            for(let i = 0; i < gui.menus.length; i++) {
+
+        if (gui.toggle.state)
+            for (let i = 0; i < gui.menus.length; i++) {
                 dy = gui.menus[i].onMouseDown(x, y, dy);
                 if (dy === -1) break;
             }
@@ -456,7 +456,7 @@ class GuiToggle {
 
     inside(x, y, dy) {
         return x > menuX + (elementWidth - menuToggleWidth) / 2 && x < menuX + (elementWidth - menuToggleWidth) / 2 + menuToggleWidth &&
-                y > menuY + dy + menuToggleMargin && y < menuY + dy + menuToggleMargin + menuToggleHeight;
+            y > menuY + dy + menuToggleMargin && y < menuY + dy + menuToggleMargin + menuToggleHeight;
     }
 }
 
@@ -469,15 +469,15 @@ class Menu {
 
         let keys = Object.keys(values);
         let type = values[keys.shift()];
-        if(type === 'value')
+        if (type === 'value')
             keys.forEach(e => {
                 let min = values[e].min;
                 let max = values[e].max;
                 let current = values[e].current;
-    
+
                 this.values.push(new Value(e, min, max, current));
             });
-        else if(type === 'preset')
+        else if (type === 'preset')
             keys.forEach(e => {
                 this.values.push(new Preset(e, values[e]));
             });
@@ -566,7 +566,7 @@ class Menu {
 
     updateValues(values) {
         this.values.forEach(e => {
-            if(e instanceof Preset) return;
+            if (e instanceof Preset) return;
             else e.updateValues(values);
         });
     }
@@ -616,7 +616,7 @@ class Value {
         ctx.fillStyle = textColour;
         ctx.fillText(`${Number(Math.round(this.current + 'e3') + 'e-3')}`, menuX + valueMargin + valueWidth * (valueNameSpace + valueBoxSpace), drawY + valueHeight / 2 + valueTextSize / 3, valueWidth * valueValueSpace - valueMargin);
 
-        
+
         // Increase drawCoords
         drawY += valueHeight;
 
@@ -644,7 +644,7 @@ class Value {
         }
         else this.colour = valueBackground;
 
-        if(this.state) {
+        if (this.state) {
             mc = 1;
 
             let pxb = menuX + 2 * valueMargin + valueWidth * valueNameSpace;// Left box side in absolute value
@@ -658,21 +658,21 @@ class Value {
 
     onMouseDown(x, y, dy) {
         if (this.insideBox(x, y, dy)) {
-                this.state = true;
+            this.state = true;
 
-                let pxb = menuX + 2 * valueMargin + valueWidth * valueNameSpace;// Left box side in absolute value
-                let pxm = menuX + valueWidth * valueNameSpace + valueWidth * valueBoxSpace;// Right box side in absolute value
-                let newVal = ((x - pxb) / (pxm - pxb)) * (this.max - this.min) + this.min;
-                this.current = Math.max(this.min, Math.min(this.max, newVal));// Move newVal inside bounds
-                return -1;
+            let pxb = menuX + 2 * valueMargin + valueWidth * valueNameSpace;// Left box side in absolute value
+            let pxm = menuX + valueWidth * valueNameSpace + valueWidth * valueBoxSpace;// Right box side in absolute value
+            let newVal = ((x - pxb) / (pxm - pxb)) * (this.max - this.min) + this.min;
+            this.current = Math.max(this.min, Math.min(this.max, newVal));// Move newVal inside bounds
+            return -1;
         }
         return dy + valueHeight;
     }
 
     onMouseUp(x) {
-        if(this.state) { 
+        if (this.state) {
             // New parameters --> Restart simulation
-            let evt = new CustomEvent('onNewParameters', {'detail': {name: this.name, value: this.current}});
+            let evt = new CustomEvent('onNewParameters', { 'detail': { name: this.name, value: this.current } });
             window.dispatchEvent(evt);
         }
         this.state = false;
@@ -683,14 +683,14 @@ class Value {
     }
 
     insideBox(x, y, dy) {
-        return x >= menuX + 2 * valueMargin + valueWidth * valueNameSpace && x <= menuX + valueWidth * valueNameSpace + valueWidth * valueBoxSpace && 
-                y >= menuY + dy + valueMargin && y <= menuY + dy + valueHeight - valueMargin;
+        return x >= menuX + 2 * valueMargin + valueWidth * valueNameSpace && x <= menuX + valueWidth * valueNameSpace + valueWidth * valueBoxSpace &&
+            y >= menuY + dy + valueMargin && y <= menuY + dy + valueHeight - valueMargin;
     }
 
     updateValues(values) {
         let keys = Object.keys(values);
         let index = keys.indexOf(this.name);
-        if(index !== -1) this.current = values[keys[index]];
+        if (index !== -1) this.current = values[keys[index]];
     }
 }
 
@@ -726,7 +726,7 @@ class Preset {
         if (this.inside(x, y, dy)) {
             // ACTIVATE PRESET: Send event and update values in menu
             gui.updateValues(this.values);
-            let evt = new CustomEvent('onNewParameters', {detail: {values: this.values}});
+            let evt = new CustomEvent('onNewParameters', { detail: { values: this.values } });
             window.dispatchEvent(evt);
             return -1;
         }
@@ -747,7 +747,7 @@ class Preset {
         return dy + valueHeight;
     }
 
-    onMouseUp(x) {}
+    onMouseUp(x) { }
 
     inside(x, y, dy) {
         return x >= menuX + valueMargin && x <= menuX + valueMargin + valueWidth && y >= menuY + dy && y <= menuY + dy + valueHeight
