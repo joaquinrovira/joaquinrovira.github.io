@@ -750,7 +750,7 @@ class Preset {
     onMouseUp(x) { }
 
     inside(x, y, dy) {
-        return x >= menuX + valueMargin && x <= menuX + valueMargin + valueWidth && y >= menuY + dy && y <= menuY + dy + valueHeight
+        return x >= menuX + valueMargin && x <= menuX + valueMargin + valueWidth && y >= menuY + dy && y <= menuY + dy + valueHeight;
     }
 }
 
