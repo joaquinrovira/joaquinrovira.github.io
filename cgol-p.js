@@ -189,8 +189,8 @@ function setupParticles() {// Used in setup() and onNewParameters event
     particles.relations = relations;
 
     let separation = parameters.separation;
-    let sep = separation;
-    let i, j, iMax = width - separation, jMax = height - separation, sp = 0;
+    let sp = separation;
+    let i, j, iMax = width - separation, jMax = height - separation;
     let maxParticles = 100;
     let actualParticles = (width - 2 * separation) * (height - 2 * separation) / (separation * separation);
     if (actualParticles > maxParticles) {
