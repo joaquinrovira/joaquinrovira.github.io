@@ -65,7 +65,7 @@ var gui;
 }
 */
 
-class Gui {
+export class Gui {
     constructor(menus, cntx, wdth, hght) {
         this.menus = [];
         this.toggle = new GuiToggle();
@@ -540,5 +540,3 @@ function roundedRectangle(x, y, width, height, r, colour) {
     ctx.arcTo(cornerX, cornerY, cornerX + r, cornerY, r);
     ctx.fill();
 }
-
-module.exports = Gui;
