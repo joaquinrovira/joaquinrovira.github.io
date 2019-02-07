@@ -194,7 +194,7 @@ function setupParticles() {// Used in setup() and onNewParameters event
     let maxParticles = 100;
     let actualParticles = (width - 2 * separation) * (height - 2 * separation) / (separation * separation);
     if (actualParticles > maxParticles) {
-        sp = (2 * (width + height) + Math.sqrt(2 * (width + height) * 2 * (width + height) - 16 * (width * height - maxParticles * separation * separation))) / 8;
+        sp = (2 * (width + height) - Math.sqrt(2 * (width + height) * 2 * (width + height) - 16 * (width * height - maxParticles * separation * separation))) / 8;
         iMax = width - sp;
         jMax = width - sp;
     }
