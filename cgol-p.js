@@ -1,4 +1,4 @@
-const Gui = require('./gui.js');
+import Gui from './gui';
 
 let canvas, width, height, ctx;
 let objects = [];
