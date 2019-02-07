@@ -1,15 +1,16 @@
+// TODO: Limit particle amount
+
 let canvas, width, height, ctx;
 let objects = [];
 let keysDown = {};
-const smallFish = { friction: 0.04, meanF: -0.04, varF: 0.12, maxMaxR: 70, minMaxR: 20, maxMinR: 20, minMinR: 0, types: 10, separation: 65 };
-let parameters = smallFish;
+let parameters;
 
 window.onload = () => {
     canvas = document.createElement('canvas');
     width = window.innerWidth;
     height = window.innerHeight;
     canvas.width = width;
-    canvas.height = height;
+    canvas.height = height - 4;
     ctx = canvas.getContext('2d');
 
     document.body.appendChild(canvas);
@@ -187,9 +188,21 @@ function setupParticles() {// Used in setup() and onNewParameters event
 
     particles.relations = relations;
 
+
     let separation = parameters.separation;
-    for (let i = separation; i < width - separation; i += separation) {
-        for (let j = separation; j < height - separation; j += separation) {
+    let i = separation, j = separation, iMax = width - separation, jMax = height - separation;
+    let maxParticles = 200;
+    let actualParticles = (width - 2 * separation) * (height - 2 * separation);
+    if(actualParticles > maxParticles) {
+        let sp = (Math.sqrt(actualParticles - maxParticles)/2) * separation;
+        i += sp;
+        j += sp;
+        iMax -= sp;
+        jMax -= sp;
+    }
+
+    for (; i < iMax; i += separation) {
+        for (; j < jMax; j += separation) {
             particles.push(new Particle(i, j, typesArray[Math.floor(Math.random() * typesArray.length)]));
         }
     }
@@ -201,6 +214,29 @@ function setupParticles() {// Used in setup() and onNewParameters event
 function setup() {
     let bkg = new Background('#000000');
     objects.push(bkg);
+
+    let menus = {
+        Variables: {
+            type: 'value',
+            friction:   { min: 0,  max: 1,   current: 0.04 },
+            meanF:      { min: -1, max: 1,   current: -0.04 },
+            varF:       { min: 0,  max: 1,   current: 0.12 },
+            maxMaxR:    { min: 0,  max: 100, current: 70 },
+            minMaxR:    { min: 0,  max: 100, current: 20 },
+            maxMinR:    { min: 0,  max: 100, current: 20 },
+            minMinR:    { min: 0,  max: 100, current: 6 },
+            types:      { min: 1,  max: 10,  current: 10 },
+            separation: { min: 10, max: 100, current: 65 }
+        },
+        Presets: {
+            type: 'preset',
+            smallFish:  { friction: 0.04, meanF: -0.04,  varF: 0.12, maxMaxR: 70,  minMaxR: 20, maxMinR: 20, minMinR: 6, types: 10, separation: 65 },
+            largeFish:  { friction: 0.2,  meanF: -0.1,   varF: 0.3,  maxMaxR: 100, minMaxR: 30, maxMinR: 30, minMinR: 6, types: 10, separation: 50 },
+            largeFish2: { friction: 0.2,  meanF: -0.1,   varF: 0.3,  maxMaxR: 100, minMaxR: 30, maxMinR: 30, minMinR: 6, types: 5,  separation: 50 },
+            chaos:      { friction: 0.02, meanF: -0.1,   varF: 0.3, maxMaxR: 100,  minMaxR: 15, maxMinR: 15, minMinR: 6, types: 10,  separation: 50 }
+        }
+    };
+    let parameters = menus.Presets.smallFish;
 
     setupParticles();
 
