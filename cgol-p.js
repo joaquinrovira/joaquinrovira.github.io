@@ -4,7 +4,7 @@ let keysDown = {};
 const smallFish = { friction: 0.04, meanF: -0.04, varF: 0.12, maxMaxR: 70, minMaxR: 20, maxMinR: 20, minMinR: 0, types: 10, separation: 65 };
 let parameters = smallFish;
 
-window.on('dom-ready', () => {
+window.onload(() => {
     canvas = document.createElement('canvas');
     width = window.innerWidth;
     height = window.innerHeight;
