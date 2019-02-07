@@ -1,18 +1,12 @@
 const Gui = require('./gui.js');
-const electron = require("electron");
-const currentWindow = electron.remote.getCurrentWindow();
 
 let canvas, width, height, ctx;
 let objects = [];
 let keysDown = {};
 const smallFish = { friction: 0.04, meanF: -0.04, varF: 0.12, maxMaxR: 70, minMaxR: 20, maxMinR: 20, minMinR: 0, types: 10, separation: 65 };
-const largeFish_variety = { friction: 0.2, meanF: -0.1, varF: 0.3, maxMaxR: 100, minMaxR: 30, maxMinR: 30, minMinR: 0, types: 10, separation: 50 };
-const largeFish = { friction: 0.2, meanF: -0.1, varF: 0.3, maxMaxR: 100, minMaxR: 30, maxMinR: 30, minMinR: 0, types: 5, separation: 50 };
-const slowStart = { friction: 0.04, meanF: -0.075, varF: 0.15, maxMaxR: 60, minMaxR: 15, maxMinR: 15, minMinR: 0, types: 5, separation: 50 };
-const test = { friction: 0.025, meanF: -0.01, varF: 0.04, maxMaxR: 100, minMaxR: 30, maxMinR: 30, minMinR: 0, types: 5, separation: 60 };
 let parameters = smallFish;
 
-currentWindow.webContents.once('dom-ready', () => {
+window.once('dom-ready', () => {
     canvas = document.createElement('canvas');
     width = window.innerWidth;
     height = window.innerHeight;
