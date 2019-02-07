@@ -188,21 +188,21 @@ function setupParticles() {// Used in setup() and onNewParameters event
 
     particles.relations = relations;
 
-
+    //FIX
     let separation = parameters.separation;
-    let i = separation, j = separation, iMax = width - separation, jMax = height - separation;
+    let i, j, iMax = width - separation, jMax = height - separation, sp = 0;
     let maxParticles = 200;
     let actualParticles = (width - 2 * separation) / separation * (height - 2 * separation) / separation;
     if (actualParticles > maxParticles) {
-        let sp = (Math.sqrt(actualParticles - maxParticles) / 2) * separation;
+        sp = (Math.sqrt(actualParticles - maxParticles) / 2) * separation;
         i += sp;
         j += sp;
         iMax -= sp;
         jMax -= sp;
     }
 
-    for (; i < iMax; i += separation) {
-        for (; j < jMax; j += separation) {
+    for (i = separation + sp; i < iMax + sp; i += separation) {
+        for (j = separation + sp; j < jMax + sp; j += separation) {
             particles.push(new Particle(i, j, typesArray[Math.floor(Math.random() * typesArray.length)]));
         }
     }
