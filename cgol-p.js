@@ -10,7 +10,7 @@ window.onload = () => {
     width = window.innerWidth;
     height = window.innerHeight;
     canvas.width = width;
-    canvas.height = height - 4;
+    canvas.height = height;
     ctx = canvas.getContext('2d');
 
     document.body.appendChild(canvas);
