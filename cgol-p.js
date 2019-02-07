@@ -192,7 +192,7 @@ function setupParticles() {// Used in setup() and onNewParameters event
     let separation = parameters.separation;
     let i, j, iMax = width - separation, jMax = height - separation, sp = 0;
     let maxParticles = 200;
-    let actualParticles = (width - 2 * separation) / separation * (height - 2 * separation) / separation;
+    let actualParticles = (width - 2 * separation) / separation * (height - 2 * separation) / (separation * separation);
     if (actualParticles > maxParticles) {
         sp = (Math.sqrt(actualParticles - maxParticles)) / 2 * separation;
         i += sp;
